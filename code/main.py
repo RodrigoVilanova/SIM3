@@ -1,23 +1,19 @@
-from py2neo import Graph, Node, Relationship
+from fastapi import FastAPI
+from fastapi import Request
+from neo4j import GraphDatabase
 
-# Configure the connection to the local Neo4j instance
-graph = Graph("bolt://neo4j:password@localhost:7687")
+app = FastAPI()
 
-# Create a new organization node
-def create_organization(name, methodology):
-    org = Node("Organization", name=name, methodology=methodology)
-    graph.create(org)
-    return org
+@app.on_event("startup")
+async def startup_event():
+    driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "sim3P@ss0rD123"))
+    with driver.session() as session:
+        with open("/Users/rodrigo.vilanova/repo/SIM3/data/SIM3.cypher", "r") as file:
+            cypher_queries = file.read().split(";")
+            for query in cypher_queries:
+                if query.strip():
+                    session.run(query.strip())
 
-# Fetch all organizations
-def get_all_organizations():
-    return graph.nodes.match("Organization")
-
-if __name__ == "__main__":
-    # Example usage
-    org = create_organization("AvantSec", "SIM3")
-    print(f"Created organization: {org['name']} with methodology: {org['methodology']}")
-
-    organizations = get_all_organizations()
-    for org in organizations:
-        print(f"Organization: {org['name']}, Methodology: {org['methodology']}")
+@app.get("/")
+def get_node():
+    return {"return": "true"}

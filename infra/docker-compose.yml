@@ -7,10 +7,37 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4'
+          cpus: '2'
           memory: 1G
     volumes:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "7474:7474"
       - "7687:7687"
+
+  sim3-app:
+    image: python:3.9
+    container_name: SIM3-APP
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+    volumes:
+      - ~/repo/SIM3/code:/code  # Map your local project directory to the container
+      - ~/repo/SIM3/sim3/bin:/sim3  # Map the local pyenv directory
+    working_dir: /code
+    command: bash -c 'pip install -r /code/requirements.txt; uvicorn main:app --port 8000 --reload'
+    depends_on:
+      - neo4j
+    ports:
+      - "8000:8000"
+    networks:
+      - sim3-network
+
+
+networks:
+  sim3-network:
+    driver: bridge
