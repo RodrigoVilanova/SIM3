@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   neo4j:
     image: neo4j:latest
     container_name: SIM3-DB
     environment:
-      - NEO4J_AUTH=neo4j/test
+      - NEO4J_AUTH=neo4j/sim3P@ss0rD123
     deploy:
       resources:
         limits:
