@@ -1,4 +1,0 @@
-pandas
-streamlit
-plotly
-neo4j
