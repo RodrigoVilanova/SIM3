@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: SIM3-DB
+    environment:
+      - NEO4J_AUTH=neo4j/test
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 1G
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "7474:7474"
+      - "7687:7687"
