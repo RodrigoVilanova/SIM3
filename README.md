@@ -1,6 +1,6 @@
 # Graph analysis of SIM3 Maturity Model
 # Author: Rodrigo Vilanova
-# Company: AvantSec
+
 
 Abstract:
   SIM3 Maturity Model Graph analysis regarding relationship betwheen all the 45 componentes from the SIM3-CMM.
