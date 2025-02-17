@@ -12,7 +12,8 @@ Abstract:
 
 Components:
   Dependencies:
-    Docker Composer - 
+
+    Docker Composer - https://docs.docker.com/compose/install/standalone/
     Neo4j           - https://hub.docker.com/_/neo4j 
     Python          - https://www.python.org/
     pyenv           - https://github.com/pyenv/pyenv
@@ -22,23 +23,35 @@ Main Goal:
 
 Install:
   Make sure you're runnig the last version of pip3:
+
     python3 -m pip install --upgrade pip
+
   Create a python virtual env with the tool as you prefer. I'll be using pyenv, like bellow:
+
     python3 -m venv sim3
+
   Activate the virtual environment:
+
     source sim3/bin/activate
+
   Install the requirments packages:
+
     pip3 install -r PATH/requirements.txt
 
 
 Execution:
   After dependencies as installed you just need to run:
-    START:
+  
+  START:
+
       docker-compose -f PATH/docker-composer.yml up -d 
-    STOP:
+    
+  STOP:
+
       docker-compose -f PATH/docker-composer.yml stop
 
   To update the relations:
+
     python3 PATH/main.py
 
   
