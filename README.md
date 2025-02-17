@@ -5,6 +5,7 @@
 Abstract:
   SIM3 Maturity Model Graph analysis regarding relationship betwheen all the 45 componentes from the SIM3-CMM.
   For more information regarding SIM3 Maturity Model:
+
     https://opencsirt.org/csirt-maturity/sim3-and-references/
     https://opencsirt.org/wp-content/uploads/2023/11/SIM3_v2_interim_standard.pdf
     https://sim3-check.opencsirt.org/#/
