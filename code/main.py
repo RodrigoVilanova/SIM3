@@ -8,7 +8,7 @@ app = FastAPI()
 async def startup_event():
     driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "sim3P@ss0rD123"))
     with driver.session() as session:
-        with open("/Users/rodrigo.vilanova/repo/SIM3/data/SIM3.cypher", "r") as file:
+        with open("./SIM3.cypher", "r") as file:
             cypher_queries = file.read().split(";")
             for query in cypher_queries:
                 if query.strip():
